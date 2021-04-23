@@ -52,7 +52,7 @@ enter into android project folder
 pushd android
 
 file_MainActivity=app/src/main/java/com/microblink/sample/MainActivity.java
-perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
+perl -i~ -pe "BEGIN{$/ = undef;} s/\/\/ Ex: add\(TotallyAwesomePlugin.class\);/\/\/ Ex: add\(TotallyAwesomePlugin.class\);\n      add\(com.microblink.blinkcard.capacitor.MicroblinkPlugin.class\);/" $file_MainActivity
 
 # return from android project folder
 popd
