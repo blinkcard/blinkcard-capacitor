@@ -202,6 +202,11 @@ export class BlinkCardRecognizer extends Recognizer {
     allowBlurFilter: boolean;
     
     /**
+     * The settings which control the anonymization of returned data.
+     */
+    anonymizationSettings: BlinkCardAnonymizationSettings;
+    
+    /**
      * Should extract the card CVV
      */
     extractCvv: boolean;
@@ -254,6 +259,11 @@ export class BlinkCardRecognizer extends Recognizer {
          * Whether blured frames filtering is allowed.
          */
         this.allowBlurFilter = true;
+        
+        /**
+         * The settings which control the anonymization of returned data.
+         */
+        this.anonymizationSettings = new BlinkCardAnonymizationSettings();
         
         /**
          * Should extract the card CVV

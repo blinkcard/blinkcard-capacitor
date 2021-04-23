@@ -13,6 +13,7 @@ public final class BlinkCardRecognizerSerialization implements RecognizerSeriali
     public Recognizer<?> createRecognizer(JSONObject jsonObject) {
         com.microblink.blinkcard.entities.recognizers.blinkcard.BlinkCardRecognizer recognizer = new com.microblink.blinkcard.entities.recognizers.blinkcard.BlinkCardRecognizer();
         recognizer.setAllowBlurFilter(jsonObject.optBoolean("allowBlurFilter", true));
+        recognizer.setAnonymizationSettings(BlinkCardSerializationUtils.deserializeBlinkCardAnonymizationSettings(jsonObject.optJSONObject("anonymizationSettings")));
         recognizer.setExtractCvv(jsonObject.optBoolean("extractCvv", true));
         recognizer.setExtractExpiryDate(jsonObject.optBoolean("extractExpiryDate", true));
         recognizer.setExtractIban(jsonObject.optBoolean("extractIban", true));
