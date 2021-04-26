@@ -1,7 +1,7 @@
 {
   "name": "@microblink/blinkcard-capacitor",
   "version": "2.2.0",
-  "description": "A small and powerful credit card Capacitor plugin for BlinkCard SDK",
+  "description": "AI-driven credit card scanning for cross-platform apps built with Capacitor.",
   "main": "dist/plugin.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -40,9 +40,20 @@
     "MicroblinkBlinkcardCapacitor.podspec"
   ],
   "keywords": [
+    "credit-card",
+    "scanning",
+    "card",
+    "scanner",
+    "sdk",
     "capacitor",
+    "ionic",
     "plugin",
-    "native"
+    "machine-learning",
+    "cross-platform",
+    "android",
+    "ios",
+    "add-card",
+    "new-payment-method"
   ],
   "capacitor": {
     "ios": {
