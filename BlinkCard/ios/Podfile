@@ -10,7 +10,7 @@ end
 target 'Plugin' do
   capacitor_pods
 
-  pod 'MBBlinkCard', '~> 2.2.0'
+  pod 'MBBlinkCard', '~> 2.3.0'
 end
 
 target 'PluginTests' do
