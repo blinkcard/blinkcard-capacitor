@@ -19,7 +19,7 @@ printf "%s\n" n | ionic start $appName blank --capacitor --type=angular
 # enter into sample project folder
 pushd $appName
 
-IS_LOCAL_BUILD=true || exit 1
+IS_LOCAL_BUILD=false || exit 1
 if [ "$IS_LOCAL_BUILD" = true ]; then
   echo "Using @microblink/blinkcard-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package

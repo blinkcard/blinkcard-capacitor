@@ -26,7 +26,7 @@ export class HomePage {
     // com.microblink.sample
     const licenseKeys: BlinkCard.License = {
       ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP6dpSuS/37rVPcGKMeTrsgR8MahcSwwXAx7W+q4DISNxpyD6+I7UJwEXZY0idcmSKWVeQM6vHpTFfH7GFprdWTFfjlKyu60UtOHF0npdL2MmfTLta+7nnJRT28SshWOzbKsFOlZ0JJoeiZMEyM4znE2J6KFWNTsI8rIUfKoZvf1ZrPQRT1B+2AzIVrm6WmIIUKHsoHnmvNM424vPEBC4yhcWu2anECMkX8Li/Q==',
-      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdb5ZkGlTu623PZxAZICPbHRp9IoY9I830/KF7XwO8xpxs1tlpIHihmMKXYcAMdAiQHI0UYZaw/MqIyWvt2dDUTunS3xrbYfu4Ubhq3sRVM/6k/s43MqANJo+g7Jm9u6rrjLfdAkmNEsV69xPNd5fYBfDnp2iQed8SYB9RVLljhWOJepp7jACKo86X6CmsZHqwomPqjvxdhyRh+mZIUNTx74F11yprw4JMONQvg==',
+      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdb5ZkGlTu623OTxHZKAmHTzXqVNPuhHHnXm497TWowJa0vswsDtOQZq7Sc8lndoPORaoDMYFMvzd4/aLTADiHm1Tg3+sCO9AS5lKKIrKANkKNEDvlHwYct9+g5e3xyq6fVy+uMzsdkFZqqbpCChDILiBQOJF4NOTufTLEDSeVNNV10nLisEBYEzD4zWZ9vnBZRNvg7WeEHOUoAOkn521e3E/oK9Andekqi0zbg==',
       showTrialLicenseWarning: true
     };
 
