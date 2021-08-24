@@ -31,7 +31,7 @@ android {
 
 rootProject.allprojects {
     repositories {
-        maven { url 'http://maven.microblink.com' }
+        maven { url 'https://maven.microblink.com' }
         google()
         jcenter()
         mavenCentral()
