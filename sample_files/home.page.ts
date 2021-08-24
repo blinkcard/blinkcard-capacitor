@@ -69,7 +69,7 @@ function buildResult(result, key) {
 
 function buildDateResult(result, key) {
   if (result && result.year !== 0) {
-    return buildResult(`${result.day}.${result.month}.${result.year}`, key);
+    return buildResult(`${result.month}/${result.year}`, key);
   }
   return '';
 }
