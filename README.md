@@ -11,12 +11,12 @@ Package depends on [BlinkCard SDK](https://microblink.com/products/blinkcard) an
 
 ### Capacitor
 
-BlinkCard plugin is developed with Capacitor version 2.4.0.
+BlinkCard plugin is developed with Capacitor version 3.2.0.
 For help with Capacitor, view official [documentation](https://capacitorjs.com/docs).
 
 ### iOS
 
-BlinkCard Capacitor plugin supports iOS 11.0 or newer.
+BlinkCard Capacitor plugin supports iOS 12.0 or newer.
 
 ### Android
 
@@ -50,8 +50,7 @@ To run sample application:
 	* Press `Run`
 
 * Android
-	* Open the app in Android Studio by running ```npx cap open android``` from the sample app's root directory
-	* Press `Run`
+	* Run the app by executing ```npx cap run android``` from the sample app's root directory
 
 ### Plugin usage
 
@@ -117,23 +116,7 @@ Our `@microblink/blinkcard-capacitor` depends on the latest [MBBlinkCard pod](ht
 
 #### Android
 
-To use BlinkCard plugin on Android you need to add the plugin to the MainActivity.java. Note that our [script](https://github.com/BlinkCard/blinkcard-capacitor/blob/feature/ios-capacitor/initIonicSampleApp.sh) does this automatically.
-
-```java
-public class MainActivity extends BridgeActivity {
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    // Initializes the Bridge
-    this.init(savedInstanceState, new ArrayList<Class<? extends Plugin>>() {{
-      // Additional plugins you've installed go here
-      // Ex: add(TotallyAwesomePlugin.class);
-      add(com.microblink.capacitor.MicroblinkPlugin.class);
-    }});
-  }
-}
-```
+BlinkCard plugin on Android is ready to use after you've added the dependency.
 
 ## Licensing
 
