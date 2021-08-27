@@ -1,11 +1,17 @@
 PODS:
-  - Capacitor (2.4.7):
+  - Capacitor (3.2.0):
     - CapacitorCordova
-  - CapacitorCordova (2.4.7)
+  - CapacitorCordova (3.2.0)
+  - MBBlinkCard (2.3.0)
 
 DEPENDENCIES:
   - "Capacitor (from `../node_modules/@capacitor/ios`)"
   - "CapacitorCordova (from `../node_modules/@capacitor/ios`)"
+  - MBBlinkCard (~> 2.3.0)
+
+SPEC REPOS:
+  trunk:
+    - MBBlinkCard
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -14,9 +20,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@capacitor/ios"
 
 SPEC CHECKSUMS:
-  Capacitor: 4cd7b342d5a15b1f6f333d687358953afd7b2d8b
-  CapacitorCordova: 2c9d6e28d9d86c4da087fa2c3537c1841954bb12
+  Capacitor: 97ac74f937eb9cd098b067c48f2e00de62c8b3c9
+  CapacitorCordova: 643fc644c43204cf1a344b19ef0423beae5ae9ff
+  MBBlinkCard: 8ca2f56b83f14ff70a318621605f71881c2bb37e
 
-PODFILE CHECKSUM: e66d6fa04b0daaf06d8498d39637adf77139c716
+PODFILE CHECKSUM: 021a39e2d279271349819b33067f227ec3be12a0
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
