@@ -10,9 +10,9 @@ import {
     BlinkCardAnonymizationMode,
     CardNumberAnonymizationSettings,
     BlinkCardAnonymizationSettings,
-    DataMatchResult,
-    ImageExtensionFactors,
     
+    ImageExtensionFactors,
+    DataMatchResult,
 } from '../types'
 
 /* tslint:disable:no-unused-variable */
@@ -34,22 +34,22 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
     cardNumberPrefix: string;
     
     /**
-     * Flag which indicatew whether the payment card number is valid or not.
+     * The payment card number is valid
      */
     cardNumberValid: boolean;
     
     /**
-     * Payment card's security code/value.
+     *  Payment card's security code/value.
      */
     cvv: string;
     
     /**
-     * Defines digital signature of recognition results.
+     * Digital signature of the recognition result. Available only if enabled with signResult property.
      */
     digitalSignature: string;
     
     /**
-     * Defines digital signature version.
+     * Version of the digital signature. Available only if enabled with signResult property.
      */
     digitalSignatureVersion: number;
     
@@ -59,7 +59,7 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
     expiryDate: Date;
     
     /**
-     * Whether the first scanned side is blurred.
+     * Wheater the first scanned side is blurred.
      */
     firstSideBlurred: boolean;
     
@@ -79,7 +79,7 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
     issuer: Issuer;
     
     /**
-     * Information about the payment card owner.
+     * Information about the payment card owner (name, company, etc.).
      */
     owner: string;
     
@@ -89,12 +89,13 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
     processingStatus: BlinkCardProcessingStatus;
     
     /**
-     * {true} if recognizer has finished scanning first side and is now scanning back side,
+     * Returns true if recognizer has finished scanning first side and is now scanning back side,
+         * false if it's still scanning first side.
      */
     scanningFirstSideDone: boolean;
     
     /**
-     * Whether the second scanned side is blurred.
+     * Wheater the second scanned side is blurred.
      */
     secondSideBlurred: boolean;
     
@@ -118,22 +119,22 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
         this.cardNumberPrefix = nativeResult.cardNumberPrefix;
         
         /**
-         * Flag which indicatew whether the payment card number is valid or not.
+         * The payment card number is valid
          */
         this.cardNumberValid = nativeResult.cardNumberValid;
         
         /**
-         * Payment card's security code/value.
+         *  Payment card's security code/value.
          */
         this.cvv = nativeResult.cvv;
         
         /**
-         * Defines digital signature of recognition results.
+         * Digital signature of the recognition result. Available only if enabled with signResult property.
          */
         this.digitalSignature = nativeResult.digitalSignature;
         
         /**
-         * Defines digital signature version.
+         * Version of the digital signature. Available only if enabled with signResult property.
          */
         this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
@@ -143,7 +144,7 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
         this.expiryDate = nativeResult.expiryDate != null ? new Date(nativeResult.expiryDate) : null;
         
         /**
-         * Whether the first scanned side is blurred.
+         * Wheater the first scanned side is blurred.
          */
         this.firstSideBlurred = nativeResult.firstSideBlurred;
         
@@ -163,7 +164,7 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
         this.issuer = nativeResult.issuer;
         
         /**
-         * Information about the payment card owner.
+         * Information about the payment card owner (name, company, etc.).
          */
         this.owner = nativeResult.owner;
         
@@ -173,12 +174,13 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
         this.processingStatus = nativeResult.processingStatus;
         
         /**
-         * {true} if recognizer has finished scanning first side and is now scanning back side,
+         * Returns true if recognizer has finished scanning first side and is now scanning back side,
+         * false if it's still scanning first side.
          */
         this.scanningFirstSideDone = nativeResult.scanningFirstSideDone;
         
         /**
-         * Whether the second scanned side is blurred.
+         * Wheater the second scanned side is blurred.
          */
         this.secondSideBlurred = nativeResult.secondSideBlurred;
         
@@ -191,63 +193,89 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
 }
 
 /**
- * Recognizer used for scanning both sides of payment cards.
+ * Recognizer used for scanning credit/debit cards.
  */
 export class BlinkCardRecognizer extends Recognizer {
 
     
     /**
-     * Whether blured frames filtering is allowed.
+     * Defines whether blured frames filtering is allowed
+         * 
+         * 
      */
     allowBlurFilter: boolean;
     
     /**
-     * The settings which control the anonymization of returned data.
+     * Defines whether sensitive data should be redacted from the result.
+         * 
+         * 
      */
     anonymizationSettings: BlinkCardAnonymizationSettings;
     
     /**
-     * Should extract the card CVV
+     * Should extract CVV
+         * 
+         * 
      */
     extractCvv: boolean;
     
     /**
-     * Should extract the payment card's expiry date.
+     * Should extract the payment card's month of expiry
+         * 
+         * 
      */
     extractExpiryDate: boolean;
     
     /**
-     * Should extract the card IBAN
+     * Should extract the payment card's IBAN
+         * 
+         * 
      */
     extractIban: boolean;
     
     /**
      * Should extract the card owner information
+         * 
+         * 
      */
     extractOwner: boolean;
     
     /**
-     * The DPI (Dots Per Inch) for full document image that should be returned.
+     * Property for setting DPI for full document images
+         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
+         * 
+         * 
      */
     fullDocumentImageDpi: number;
     
     /**
-     * The extension factors for full document image.
+     * Image extension factors for full document image.
+         * 
+         * @see CImageExtensionFactors
+         * 
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
     /**
-     * Padding is a minimum distance from the edge of the frame and it is defined as a percentage
+     * Pading is a minimum distance from the edge of the frame and is defined as a percentage of the frame width. Default value is 0.0f and in that case
+         * padding edge and image edge are the same.
+         * Recommended value is 0.02f.
+         * 
+         * 
      */
     paddingEdge: number;
     
     /**
-     * Defines whether full document image will be available in
+     * Sets whether full document image of ID card should be extracted.
+         * 
+         * 
      */
     returnFullDocumentImage: boolean;
     
     /**
-     * Defines whether or not recognition result should be signed.
+     * Whether or not recognition result should be signed.
+         * 
+         * 
      */
     signResult: boolean;
     
@@ -256,57 +284,83 @@ export class BlinkCardRecognizer extends Recognizer {
         super('BlinkCardRecognizer');
         
         /**
-         * Whether blured frames filtering is allowed.
+         * Defines whether blured frames filtering is allowed
+         * 
+         * 
          */
         this.allowBlurFilter = true;
         
         /**
-         * The settings which control the anonymization of returned data.
+         * Defines whether sensitive data should be redacted from the result.
+         * 
+         * 
          */
         this.anonymizationSettings = new BlinkCardAnonymizationSettings();
         
         /**
-         * Should extract the card CVV
+         * Should extract CVV
+         * 
+         * 
          */
         this.extractCvv = true;
         
         /**
-         * Should extract the payment card's expiry date.
+         * Should extract the payment card's month of expiry
+         * 
+         * 
          */
         this.extractExpiryDate = true;
         
         /**
-         * Should extract the card IBAN
+         * Should extract the payment card's IBAN
+         * 
+         * 
          */
         this.extractIban = true;
         
         /**
          * Should extract the card owner information
+         * 
+         * 
          */
         this.extractOwner = true;
         
         /**
-         * The DPI (Dots Per Inch) for full document image that should be returned.
+         * Property for setting DPI for full document images
+         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
+         * 
+         * 
          */
         this.fullDocumentImageDpi = 250;
         
         /**
-         * The extension factors for full document image.
+         * Image extension factors for full document image.
+         * 
+         * @see CImageExtensionFactors
+         * 
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
         /**
-         * Padding is a minimum distance from the edge of the frame and it is defined as a percentage
+         * Pading is a minimum distance from the edge of the frame and is defined as a percentage of the frame width. Default value is 0.0f and in that case
+         * padding edge and image edge are the same.
+         * Recommended value is 0.02f.
+         * 
+         * 
          */
         this.paddingEdge = 0.0;
         
         /**
-         * Defines whether full document image will be available in
+         * Sets whether full document image of ID card should be extracted.
+         * 
+         * 
          */
         this.returnFullDocumentImage = false;
         
         /**
-         * Defines whether or not recognition result should be signed.
+         * Whether or not recognition result should be signed.
+         * 
+         * 
          */
         this.signResult = false;
         

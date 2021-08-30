@@ -6,6 +6,7 @@
 //
 
 #import "MBBlinkCardOverlaySettingsSerialization.h"
+#import "MBOverlaySerializationUtils.h"
 
 @interface MBCBlinkCardOverlaySettingsSerialization ()
 
@@ -30,6 +31,7 @@
     MBCBlinkCardOverlaySettings *sett = [[MBCBlinkCardOverlaySettings alloc] init];
     self.delegate = delegate;
     sett.enableEditScreen = NO;
+    [MBCOverlaySerializationUtils extractCommonOverlaySettings:jsonOverlaySettings overlaySettings:sett];
 
     {
         id glareMessage = [jsonOverlaySettings valueForKey:@"glareMessage"];
