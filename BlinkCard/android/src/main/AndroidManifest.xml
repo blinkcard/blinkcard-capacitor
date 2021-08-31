@@ -1,5 +1,8 @@
 
   <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.microblink.blinkcard.capacitor.blinkcardcapacitor">
+      <application>
+      	<activity android:name="com.microblink.blinkcard.activity.BlinkCardActivity" android:noHistory="true"/>
+      </application>
   </manifest>
   

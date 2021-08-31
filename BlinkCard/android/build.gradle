@@ -31,7 +31,7 @@ android {
 
 rootProject.allprojects {
     repositories {
-        maven { url 'http://maven.microblink.com' }
+        maven { url 'https://maven.microblink.com' }
         google()
         jcenter()
         mavenCentral()
@@ -43,7 +43,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
 
-    implementation('com.microblink:blinkcard:2.3.0@aar') {
+    implementation('com.microblink:blinkcard:2.4.0@aar') {
         transitive = true
     }
 }

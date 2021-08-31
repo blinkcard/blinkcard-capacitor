@@ -1,9 +1,3 @@
-declare module '@capacitor/core' {
-    interface PluginRegistry {
-	BlinkCardCapacitorPlugin: {
-			scanWithCamera: Function;
-		};
-    }
+export interface BlinkCardCapacitorPlugin {
+	scanWithCamera: Function;
 }
-
-export default {}

@@ -56,8 +56,14 @@ public class BlinkCardCapacitorPlugin: CAPPlugin {
                     return
             }
             recognizerRunneViewController.modalPresentationStyle = .fullScreen
-            self.bridge.viewController.present(recognizerRunneViewController, animated: true, completion: nil)
+            self.bridge?.viewController?.present(recognizerRunneViewController, animated: true, completion: nil)
         }
+    }
+    
+    @objc func setLanguage(_ call: CAPPluginCall) {
+        let language = call.getString("language") ?? "en"
+        MBCMicroblinkApp.shared().language = language
+        call.resolve()
     }
 
     private func setLicenseKey(license: [String:Any]) {
