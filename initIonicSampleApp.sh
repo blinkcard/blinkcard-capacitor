@@ -27,6 +27,7 @@ if [ "$IS_LOCAL_BUILD" = true ]; then
 else
   echo "Downloading @microblink/blinkcard-capacitor module"
   npm install --save @microblink/blinkcard-capacitor
+  npm install --save @microblink/blinkid-capacitor
 fi
 
 # copy files before ionic build
