@@ -19,11 +19,12 @@ printf "%s\n" n | ionic start $appName blank --package-id=$appId --capacitor --t
 # enter into sample project folder
 pushd $appName
 
-IS_LOCAL_BUILD=false || exit 1
+IS_LOCAL_BUILD=true || exit 1
 if [ "$IS_LOCAL_BUILD" = true ]; then
   echo "Using @microblink/blinkcard-capacitor from this repo instead from NPM"
   # use directly source code from this repo instead of npm package
   npm i $blink_card_plugin_path
+  npm install --save @microblink/blinkid-capacitor
 else
   echo "Downloading @microblink/blinkcard-capacitor module"
   npm install --save @microblink/blinkcard-capacitor
