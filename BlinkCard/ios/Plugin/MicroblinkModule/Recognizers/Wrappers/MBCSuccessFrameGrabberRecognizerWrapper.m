@@ -1,15 +1,15 @@
 //
-//  MBSuccessFrameGrabberRecognizerWrapper.m
+//  MBCSuccessFrameGrabberRecognizerWrapper.m
 //  MicroblinkModule
 //
 //  Created by DoDo on 15/06/2018.
 //  Copyright © 2018 Jura Skrlec. All rights reserved.
 //
 
-#import "MBSuccessFrameGrabberRecognizerWrapper.h"
+#import "MBCSuccessFrameGrabberRecognizerWrapper.h"
 
-#import "MBRecognizerSerializers.h"
-#import "MBSerializationUtils.h"
+#import "MBCRecognizerSerializers.h"
+#import "MBCSerializationUtils.h"
 
 @implementation MBCSuccessFrameGrabberRecognizerCreator
 
