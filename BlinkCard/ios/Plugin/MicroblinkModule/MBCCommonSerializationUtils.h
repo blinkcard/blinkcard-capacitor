@@ -1,5 +1,5 @@
 //
-//  MBBlinkIDSerializationUtils.h
+//  MBCBlinkIDSerializationUtils.h
 //  BlinkIdDevDemo
 //
 //  Created by DoDo on 04/06/2018.
