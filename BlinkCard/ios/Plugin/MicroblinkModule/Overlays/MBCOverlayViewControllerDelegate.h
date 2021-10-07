@@ -1,5 +1,5 @@
 //
-//  MBOverlayViewControllerDelegate.h
+//  MBCOverlayViewControllerDelegate.h
 //
 //  Created by DoDo on 01/06/2018.
 //

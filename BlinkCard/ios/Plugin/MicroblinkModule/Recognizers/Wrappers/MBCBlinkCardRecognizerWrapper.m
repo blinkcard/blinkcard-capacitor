@@ -1,7 +1,7 @@
-#import "MBBlinkCardRecognizerWrapper.h"
-#import "MBSerializationUtils.h"
-#import "MBBlinkCardSerializationUtils.h"
-#import "MBCommonSerializationUtils.h"
+#import "MBCBlinkCardRecognizerWrapper.h"
+#import "MBCSerializationUtils.h"
+#import "MBCBlinkCardSerializationUtils.h"
+#import "MBCCommonSerializationUtils.h"
 
 @implementation MBCBlinkCardRecognizerCreator
 

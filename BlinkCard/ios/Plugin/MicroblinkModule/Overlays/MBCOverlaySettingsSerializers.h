@@ -1,11 +1,11 @@
 //
-//  MBOverlaySettingsSerializers.h
+//  MBCOverlaySettingsSerializers.h
 //  BlinkIdDevDemo
 //
 //  Created by DoDo on 04/06/2018.
 //
 
-#import "MBOverlayViewControllerDelegate.h"
+#import "MBCOverlayViewControllerDelegate.h"
 
 #import <BlinkCard/BlinkCard.h>
 

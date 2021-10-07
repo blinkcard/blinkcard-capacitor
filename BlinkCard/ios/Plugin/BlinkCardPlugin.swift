@@ -100,35 +100,35 @@ extension BlinkCardCapacitorPlugin: MBCOverlayViewControllerDelegate {
     public func overlayViewControllerDidFinishScanning(_ overlayViewController: MBCOverlayViewController!, state: MBCRecognizerResultState) {
 
         defer {
-		recognizerCollection = nil
+            recognizerCollection = nil
             pluginCall = nil
         }
-
+        
         if (state != .empty) {
             overlayViewController.recognizerRunnerViewController?.pauseScanning()
-
+            
             guard let recognizerListCount = recognizerCollection?.recognizerList.count else {
                 return
             }
-
+            
             var resultJson = [NSDictionary]()
-
-		var isDocumentCaptureRecognizer = false
-
+            
+            var isDocumentCaptureRecognizer = false
+            
             for recognizerIndex in 0..<recognizerListCount {
                 guard let resultDict = recognizerCollection?.recognizerList[recognizerIndex].serializeResult() else {
                     return
                 }
                 resultJson.append(resultDict as NSDictionary)
             }
-
+            
             if (!isDocumentCaptureRecognizer) {
-		pluginCall?.resolve([
-			"cancelled": false,
-			"resultList": resultJson
-		])
-		}
-
+                pluginCall?.resolve([
+                    "cancelled": false,
+                    "resultList": resultJson
+                ])
+            }
+            
             DispatchQueue.main.async {
                 overlayViewController.dismiss(animated: true, completion: nil)
             }
@@ -140,6 +140,8 @@ extension BlinkCardCapacitorPlugin: MBCOverlayViewControllerDelegate {
 		recognizerCollection = nil
             pluginCall = nil
         }
+        
+        pluginCall?.resolve(["cancelled": true])
 
         overlayViewController.dismiss(animated: true, completion: nil)
     }
