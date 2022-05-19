@@ -120,5 +120,5 @@ BlinkCard plugin on Android is ready to use after you've added the dependency.
 
 ## Licensing
 
-- [Generate](https://microblink.com/login?url=/customer/generatedemolicence) a **free trial license key** to start using the SDK in your app (registration required)
+- A valid license key is required to initialize scanning. You can request a **free trial license key**, after you register, at [Microblink Developer Hub](https://account.microblink.com/signin)
 - Get information about pricing and licensing of [BlinkCard](https://microblink.com/blinkcard)
