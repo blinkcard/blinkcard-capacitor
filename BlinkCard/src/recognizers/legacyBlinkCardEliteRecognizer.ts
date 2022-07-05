@@ -29,35 +29,22 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
     cardNumber: string;
     
     /**
-     *  Payment card's security code/value
+     * Payment card's security code/value.
      */
     cvv: string;
     
     /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
-     */
-    digitalSignature: string;
-    
-    /**
-     * Version of the digital signature. Available only if enabled with signResult property.
-     */
-    digitalSignatureVersion: number;
-    
-    /**
-     * Returns CDataMatchResultSuccess if data from scanned parts/sides of the document match,
-         * CDataMatchResultFailed otherwise. For example if date of expiry is scanned from the front and back side
-         * of the document and values do not match, this method will return CDataMatchResultFailed. Result will
-         * be CDataMatchResultSuccess only if scanned values for all fields that are compared are the same.
+     * Defines result of the data matching algorithm for scanned parts/sides of the document.
      */
     documentDataMatch: DataMatchResult;
     
     /**
-     * back side image of the document if enabled with returnFullDocumentImage property.
+     * Back side image of the document
      */
     fullDocumentBackImage: string;
     
     /**
-     * front side image of the document if enabled with returnFullDocumentImage property.
+     * Front side image of the document
      */
     fullDocumentFrontImage: string;
     
@@ -67,13 +54,12 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
     inventoryNumber: string;
     
     /**
-     * Information about the payment card owner (name, company, etc.).
+     * Information about the payment card owner (name, company, etc.)
      */
     owner: string;
     
     /**
-     * Returns true if recognizer has finished scanning first side and is now scanning back side,
-         * false if it's still scanning first side.
+     * {true} if recognizer has finished scanning first side and is now scanning back side,
      */
     scanningFirstSideDone: boolean;
     
@@ -92,35 +78,22 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
         this.cardNumber = nativeResult.cardNumber;
         
         /**
-         *  Payment card's security code/value
+         * Payment card's security code/value.
          */
         this.cvv = nativeResult.cvv;
         
         /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-        
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
-        
-        /**
-         * Returns CDataMatchResultSuccess if data from scanned parts/sides of the document match,
-         * CDataMatchResultFailed otherwise. For example if date of expiry is scanned from the front and back side
-         * of the document and values do not match, this method will return CDataMatchResultFailed. Result will
-         * be CDataMatchResultSuccess only if scanned values for all fields that are compared are the same.
+         * Defines result of the data matching algorithm for scanned parts/sides of the document.
          */
         this.documentDataMatch = nativeResult.documentDataMatch;
         
         /**
-         * back side image of the document if enabled with returnFullDocumentImage property.
+         * Back side image of the document
          */
         this.fullDocumentBackImage = nativeResult.fullDocumentBackImage;
         
         /**
-         * front side image of the document if enabled with returnFullDocumentImage property.
+         * Front side image of the document
          */
         this.fullDocumentFrontImage = nativeResult.fullDocumentFrontImage;
         
@@ -130,13 +103,12 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
         this.inventoryNumber = nativeResult.inventoryNumber;
         
         /**
-         * Information about the payment card owner (name, company, etc.).
+         * Information about the payment card owner (name, company, etc.)
          */
         this.owner = nativeResult.owner;
         
         /**
-         * Returns true if recognizer has finished scanning first side and is now scanning back side,
-         * false if it's still scanning first side.
+         * {true} if recognizer has finished scanning first side and is now scanning back side,
          */
         this.scanningFirstSideDone = nativeResult.scanningFirstSideDone;
         
@@ -149,89 +121,60 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
 }
 
 /**
- * Recognizer used for scanning the front side of elite credit/debit cards.
+ * Recognizer used for scanning both sides of elite payment cards.
  */
 export class LegacyBlinkCardEliteRecognizer extends Recognizer {
 
     
     /**
      * Should anonymize the card number area (redact image pixels) on the document image result
-         * 
-         * 
      */
     anonymizeCardNumber: boolean;
     
     /**
-     * Should anonymize the CVV on the document image result
-         * 
-         * 
+     * Should anonymize the CVV area (redact image pixels) on the document image result
      */
     anonymizeCvv: boolean;
     
     /**
      * Should anonymize the owner area (redact image pixels) on the document image result
-         * 
-         * 
      */
     anonymizeOwner: boolean;
     
     /**
-     * Defines if glare detection should be turned on/off.
-         * 
-         * 
+     * Defines whether glare detector is enabled.
      */
     detectGlare: boolean;
     
     /**
      * Should extract the card's inventory number
-         * 
-         * 
      */
     extractInventoryNumber: boolean;
     
     /**
      * Should extract the card owner information
-         * 
-         * 
      */
     extractOwner: boolean;
     
     /**
      * Should extract the payment card's month of expiry
-         * 
-         * 
      */
     extractValidThru: boolean;
     
     /**
-     * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+     * The DPI (Dots Per Inch) for full document image that should be returned.
      */
     fullDocumentImageDpi: number;
     
     /**
-     * Image extension factors for full document image.
-         * 
-         * @see CImageExtensionFactors
-         * 
+     * The extension factors for full document image.
      */
     fullDocumentImageExtensionFactors: ImageExtensionFactors;
     
     /**
-     * Sets whether full document image of ID card should be extracted.
-         * 
-         * 
+     * Defines whether full document image will be available in
      */
     returnFullDocumentImage: boolean;
-    
-    /**
-     * Whether or not recognition result should be signed.
-         * 
-         * 
-     */
-    signResult: boolean;
     
 
     constructor() {
@@ -239,82 +182,53 @@ export class LegacyBlinkCardEliteRecognizer extends Recognizer {
         
         /**
          * Should anonymize the card number area (redact image pixels) on the document image result
-         * 
-         * 
          */
         this.anonymizeCardNumber = false;
         
         /**
-         * Should anonymize the CVV on the document image result
-         * 
-         * 
+         * Should anonymize the CVV area (redact image pixels) on the document image result
          */
         this.anonymizeCvv = false;
         
         /**
          * Should anonymize the owner area (redact image pixels) on the document image result
-         * 
-         * 
          */
         this.anonymizeOwner = false;
         
         /**
-         * Defines if glare detection should be turned on/off.
-         * 
-         * 
+         * Defines whether glare detector is enabled.
          */
         this.detectGlare = true;
         
         /**
          * Should extract the card's inventory number
-         * 
-         * 
          */
         this.extractInventoryNumber = true;
         
         /**
          * Should extract the card owner information
-         * 
-         * 
          */
         this.extractOwner = true;
         
         /**
          * Should extract the payment card's month of expiry
-         * 
-         * 
          */
         this.extractValidThru = true;
         
         /**
-         * Property for setting DPI for full document images
-         * Valid ranges are [100,400]. Setting DPI out of valid ranges throws an exception
-         * 
-         * 
+         * The DPI (Dots Per Inch) for full document image that should be returned.
          */
         this.fullDocumentImageDpi = 250;
         
         /**
-         * Image extension factors for full document image.
-         * 
-         * @see CImageExtensionFactors
-         * 
+         * The extension factors for full document image.
          */
         this.fullDocumentImageExtensionFactors = new ImageExtensionFactors();
         
         /**
-         * Sets whether full document image of ID card should be extracted.
-         * 
-         * 
+         * Defines whether full document image will be available in
          */
         this.returnFullDocumentImage = false;
-        
-        /**
-         * Whether or not recognition result should be signed.
-         * 
-         * 
-         */
-        this.signResult = false;
         
 
 	this.createResultFromNative = (nativeResult: any) => { return new LegacyBlinkCardEliteRecognizerResult(nativeResult); };

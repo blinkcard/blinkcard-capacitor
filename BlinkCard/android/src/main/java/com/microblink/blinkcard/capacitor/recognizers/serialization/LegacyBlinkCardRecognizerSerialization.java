@@ -25,7 +25,6 @@ public final class LegacyBlinkCardRecognizerSerialization implements RecognizerS
         recognizer.setFullDocumentImageDpi(jsonObject.optInt("fullDocumentImageDpi", 250));
         recognizer.setFullDocumentImageExtensionFactors(SerializationUtils.deserializeExtensionFactors(jsonObject.optJSONObject("fullDocumentImageExtensionFactors")));
         recognizer.setReturnFullDocumentImage(jsonObject.optBoolean("returnFullDocumentImage", false));
-        recognizer.setSignResult(jsonObject.optBoolean("signResult", false));
         return recognizer;
     }
 
@@ -37,8 +36,6 @@ public final class LegacyBlinkCardRecognizerSerialization implements RecognizerS
             SerializationUtils.addCommonRecognizerResultData(jsonResult, result);
             jsonResult.put("cardNumber", result.getCardNumber());
             jsonResult.put("cvv", result.getCvv());
-            jsonResult.put("digitalSignature", SerializationUtils.encodeByteArrayToBase64(result.getDigitalSignature()));
-            jsonResult.put("digitalSignatureVersion", (int)result.getDigitalSignatureVersion());
             jsonResult.put("documentDataMatch", SerializationUtils.serializeEnum(result.getDocumentDataMatch()));
             jsonResult.put("fullDocumentBackImage", SerializationUtils.encodeImageBase64(result.getFullDocumentBackImage()));
             jsonResult.put("fullDocumentFrontImage", SerializationUtils.encodeImageBase64(result.getFullDocumentFrontImage()));
