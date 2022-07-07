@@ -34,16 +34,6 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
     cvv: string;
     
     /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
-     */
-    digitalSignature: string;
-    
-    /**
-     * Version of the digital signature. Available only if enabled with signResult property.
-     */
-    digitalSignatureVersion: number;
-    
-    /**
      * Returns CDataMatchResultSuccess if data from scanned parts/sides of the document match,
          * CDataMatchResultFailed otherwise. For example if date of expiry is scanned from the front and back side
          * of the document and values do not match, this method will return CDataMatchResultFailed. Result will
@@ -95,16 +85,6 @@ export class LegacyBlinkCardEliteRecognizerResult extends RecognizerResult {
          *  Payment card's security code/value
          */
         this.cvv = nativeResult.cvv;
-        
-        /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-        
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
         /**
          * Returns CDataMatchResultSuccess if data from scanned parts/sides of the document match,
@@ -226,13 +206,6 @@ export class LegacyBlinkCardEliteRecognizer extends Recognizer {
      */
     returnFullDocumentImage: boolean;
     
-    /**
-     * Whether or not recognition result should be signed.
-         * 
-         * 
-     */
-    signResult: boolean;
-    
 
     constructor() {
         super('LegacyBlinkCardEliteRecognizer');
@@ -308,13 +281,6 @@ export class LegacyBlinkCardEliteRecognizer extends Recognizer {
          * 
          */
         this.returnFullDocumentImage = false;
-        
-        /**
-         * Whether or not recognition result should be signed.
-         * 
-         * 
-         */
-        this.signResult = false;
         
 
 	this.createResultFromNative = (nativeResult: any) => { return new LegacyBlinkCardEliteRecognizerResult(nativeResult); };

@@ -44,16 +44,6 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
     cvv: string;
     
     /**
-     * Digital signature of the recognition result. Available only if enabled with signResult property.
-     */
-    digitalSignature: string;
-    
-    /**
-     * Version of the digital signature. Available only if enabled with signResult property.
-     */
-    digitalSignatureVersion: number;
-    
-    /**
      * The payment card's expiry date.
      */
     expiryDate: Date;
@@ -127,16 +117,6 @@ export class BlinkCardRecognizerResult extends RecognizerResult {
          *  Payment card's security code/value.
          */
         this.cvv = nativeResult.cvv;
-        
-        /**
-         * Digital signature of the recognition result. Available only if enabled with signResult property.
-         */
-        this.digitalSignature = nativeResult.digitalSignature;
-        
-        /**
-         * Version of the digital signature. Available only if enabled with signResult property.
-         */
-        this.digitalSignatureVersion = nativeResult.digitalSignatureVersion;
         
         /**
          * The payment card's expiry date.
@@ -272,13 +252,6 @@ export class BlinkCardRecognizer extends Recognizer {
      */
     returnFullDocumentImage: boolean;
     
-    /**
-     * Whether or not recognition result should be signed.
-         * 
-         * 
-     */
-    signResult: boolean;
-    
 
     constructor() {
         super('BlinkCardRecognizer');
@@ -356,13 +329,6 @@ export class BlinkCardRecognizer extends Recognizer {
          * 
          */
         this.returnFullDocumentImage = false;
-        
-        /**
-         * Whether or not recognition result should be signed.
-         * 
-         * 
-         */
-        this.signResult = false;
         
 
 	this.createResultFromNative = (nativeResult: any) => { return new BlinkCardRecognizerResult(nativeResult); };

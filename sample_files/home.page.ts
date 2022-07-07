@@ -25,8 +25,8 @@ export class HomePage {
 
     // com.microblink.sample
     const licenseKeys: BlinkCard.License = {
-      ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP6dpSuS/37rVPjGokDWGeG0uIpg5vai86BjddI7X/rWIW0lmxdRfVFjAiONnsMYkAVGfTogq4XZBIyaQGc64arVDzTyPmbetbZ+8TMGw81HQwQTDOa7YLu1YlrOylkq+yK8Lt9rmTyWJcZ4s+i7Mif8gft8GXuErzTQhN+g2vs+89zoXlxeTaY9o0iQvXee4DxFd8oo58UqlvZ2EgBIZSoZNFnczm/rRvhsFIw==',
-      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdb5ZkGlTu623Pixiw8Ch4dc3R99hww4bJP3CjnjB2xsx3MaGWq2rlYlj8a+o1ELLtwafmJLUVUrG+P2Wz+xJVT658sNQa9iyNRMRLkCYUxwi7JMPSULVHWGXvf+KYLRhSccUdMhkKUvAaCp1qwTYoTiC2TsZ6JCKgcg+BKCcthz3ibXVIvsD+aWCCEAIYCImsSkMfnQW7JlNKnUQQDYeRzgYrcnBER0I8NiArA==',
+      ios: 'sRwAAAEVY29tLm1pY3JvYmxpbmsuc2FtcGxl1BIcP6dpSuS/37rVPJmIM83fr/w89BOJALPcMQUwS9wIOKQPWi56s63K7WjS0zghtd7iZjWQ+Y3GsPgYIwIoPX1Pw0lyXLGevYFZrCPL+GqHVPgVolbhruatlqsXDECRwQsN7TwA9UXVr3Zd+EmiwbsglYqI0wBx7IyPndVfRcFmGozG4PSP9+0Mb5BLUPHHxuH1iV+TlGbukfps/XEHEoFXHnQXLWUH4BRClsSJVQ==',
+      android: 'sRwAAAAVY29tLm1pY3JvYmxpbmsuc2FtcGxlU9kJdb5ZkGlTu623PARDZ2y3bw/2FMh5N8Ns88iVHtrPi9+/nWa1Jfjuaio9sNqvjMT6OtkQ6mJBjE58IcmwG5+mm6WUi+Jy6MYfmGIzIoMFQvkqfYUo2Q/WFqsbYjo57kuic4Q5BWQbqavo1wF7llPipW1ABXqrTLnoewhyHJrJCMyXSOvK6ensoeNbd2iJtgi2L6myHxmekGcmW2ZnKr9otoMUy0YqZ5AjqMxjDw==',
       showTrialLicenseWarning: true
     };
 
