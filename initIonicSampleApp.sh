@@ -55,14 +55,14 @@ pushd ios/App
 pod repo update
 pod install
 
-if false; then
-  echo "Replace pod with custom dev version of BlinkCard framework"
-  # replace pod with custom dev version of BlinkCard framework
-  pushd Pods/MBBlinkCard
-  rm -rf BlinkCard.xcframework
-  cp -r ~/Downloads/blinkkcard-ios/BlinkCard.xcframework ./
-  popd
-fi
+#if false; then
+#  echo "Replace pod with custom dev version of BlinkCard framework"
+#  # replace pod with custom dev version of BlinkCard framework
+#  pushd Pods/MBBlinkCard
+#  rm -rf BlinkCard.xcframework
+#  cp -r ~/Downloads/blinkkcard-ios/BlinkCard.xcframework ./
+#  popd
+#fi
 
 # return from ios project folder
 popd
