@@ -11,5 +11,3 @@ export * from './overlays/blinkcardOverlays';
 // export recognizers that can be used and their results
 export * from './recognizers/successFrameGrabberRecognizer';
 export * from './recognizers/blinkCardRecognizer';
-export * from './recognizers/legacyBlinkCardEliteRecognizer';
-export * from './recognizers/legacyBlinkCardRecognizer';

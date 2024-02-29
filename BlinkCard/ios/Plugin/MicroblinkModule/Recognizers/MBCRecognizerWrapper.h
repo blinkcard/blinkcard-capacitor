@@ -13,7 +13,7 @@
 @protocol MBCRecognizerCreator
 @required
 
--(MBCRecognizer *) createRecognizer:(NSDictionary*) jsonRecognizer;
+- (MBCRecognizer * _Nullable)createRecognizer:(NSDictionary * _Nullable) jsonRecognizer;
 
 @property (nonatomic, nonnull, readonly) NSString* jsonName;
 
@@ -23,6 +23,6 @@
 
 @interface MBCRecognizer (JsonSerialization)
 
--(NSDictionary *) serializeResult;
+- (NSDictionary * _Nullable)serializeResult;
 
 @end

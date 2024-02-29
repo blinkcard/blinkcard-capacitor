@@ -24,6 +24,12 @@
         }
     }
     {
+        id allowInvalidCardNumber = [jsonRecognizer valueForKey:@"allowInvalidCardNumber"];
+        if (allowInvalidCardNumber != nil) {
+            recognizer.allowInvalidCardNumber = [(NSNumber *)allowInvalidCardNumber boolValue];
+        }
+    }
+    {
         id anonymizationSettings = [jsonRecognizer valueForKey:@"anonymizationSettings"];
         if (anonymizationSettings != nil) {
             recognizer.anonymizationSettings = [MBCBlinkCardSerializationUtils deserializeMBBlinkCardAnonymizationSettings:(NSDictionary*)anonymizationSettings];
@@ -66,15 +72,39 @@
         }
     }
     {
+        id handDocumentOverlapThreshold = [jsonRecognizer valueForKey:@"handDocumentOverlapThreshold"];
+        if (handDocumentOverlapThreshold != nil) {
+            recognizer.handDocumentOverlapThreshold = [(NSNumber *)handDocumentOverlapThreshold floatValue];
+        }
+    }
+    {
+        id handScaleThreshold = [jsonRecognizer valueForKey:@"handScaleThreshold"];
+        if (handScaleThreshold != nil) {
+            recognizer.handScaleThreshold = [(NSNumber *)handScaleThreshold floatValue];
+        }
+    }
+    {
         id paddingEdge = [jsonRecognizer valueForKey:@"paddingEdge"];
         if (paddingEdge != nil) {
             recognizer.paddingEdge = [(NSNumber *)paddingEdge floatValue];
         }
     }
     {
+        id photocopyAnalysisMatchLevel = [jsonRecognizer valueForKey:@"photocopyAnalysisMatchLevel"];
+        if (photocopyAnalysisMatchLevel != nil) {
+            recognizer.photocopyAnalysisMatchLevel = (MBCMatchLevel)[(NSNumber *)photocopyAnalysisMatchLevel unsignedIntegerValue];
+        }
+    }
+    {
         id returnFullDocumentImage = [jsonRecognizer valueForKey:@"returnFullDocumentImage"];
         if (returnFullDocumentImage != nil) {
             recognizer.returnFullDocumentImage = [(NSNumber *)returnFullDocumentImage boolValue];
+        }
+    }
+    {
+        id screenAnalysisMatchLevel = [jsonRecognizer valueForKey:@"screenAnalysisMatchLevel"];
+        if (screenAnalysisMatchLevel != nil) {
+            recognizer.screenAnalysisMatchLevel = (MBCMatchLevel)[(NSNumber *)screenAnalysisMatchLevel unsignedIntegerValue];
         }
     }
 
@@ -94,16 +124,20 @@
     [jsonResult setValue:self.result.cardNumberPrefix forKey:@"cardNumberPrefix"];
     [jsonResult setValue:[NSNumber numberWithBool:self.result.cardNumberValid] forKey:@"cardNumberValid"];
     [jsonResult setValue:self.result.cvv forKey:@"cvv"];
-    [jsonResult setValue:[MBCSerializationUtils serializeMBDateResult:self.result.expiryDate] forKey:@"expiryDate"];
+    [jsonResult setValue:[MBCBlinkCardSerializationUtils serializeDocumentLivenessCheckResult:self.result.documentLivenessCheck] forKey:@"documentLivenessCheck"];
+    [jsonResult setValue:[MBCSerializationUtils serializeMBCDate:self.result.expiryDate] forKey:@"expiryDate"];
+    [jsonResult setValue:[NSNumber numberWithBool:self.result.firstSideAnonymized] forKey:@"firstSideAnonymized"];
     [jsonResult setValue:[NSNumber numberWithBool:self.result.firstSideBlurred] forKey:@"firstSideBlurred"];
     [jsonResult setValue:[MBCSerializationUtils encodeMBImage:self.result.firstSideFullDocumentImage] forKey:@"firstSideFullDocumentImage"];
     [jsonResult setValue:self.result.iban forKey:@"iban"];
-    [jsonResult setValue:[NSNumber numberWithInteger:(self.result.issuer + 1)] forKey:@"issuer"];
+    [jsonResult setValue:[NSNumber numberWithInteger:self.result.issuer] forKey:@"issuer"];
     [jsonResult setValue:self.result.owner forKey:@"owner"];
-    [jsonResult setValue:[NSNumber numberWithInteger:(self.result.processingStatus + 1)] forKey:@"processingStatus"];
+    [jsonResult setValue:[NSNumber numberWithInteger:self.result.processingStatus] forKey:@"processingStatus"];
     [jsonResult setValue:[NSNumber numberWithBool:self.result.scanningFirstSideDone] forKey:@"scanningFirstSideDone"];
+    [jsonResult setValue:[NSNumber numberWithBool:self.result.secondSideAnonymized] forKey:@"secondSideAnonymized"];
     [jsonResult setValue:[NSNumber numberWithBool:self.result.secondSideBlurred] forKey:@"secondSideBlurred"];
     [jsonResult setValue:[MBCSerializationUtils encodeMBImage:self.result.secondSideFullDocumentImage] forKey:@"secondSideFullDocumentImage"];
+
     return jsonResult;
 }
 

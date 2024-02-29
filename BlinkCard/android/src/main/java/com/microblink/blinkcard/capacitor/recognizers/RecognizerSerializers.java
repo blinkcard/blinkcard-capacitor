@@ -24,8 +24,6 @@ public enum RecognizerSerializers {
     RecognizerSerializers() {
         registerMapping(new SuccessFrameGrabberRecognizerSerialization());
         registerMapping(new BlinkCardRecognizerSerialization());
-        registerMapping(new LegacyBlinkCardEliteRecognizerSerialization());
-        registerMapping(new LegacyBlinkCardRecognizerSerialization());
     }
 
     public RecognizerSerialization getRecognizerSerialization(JSONObject jsonRecognizer) throws JSONException {

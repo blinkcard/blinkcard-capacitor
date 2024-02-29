@@ -3,7 +3,7 @@ package com.microblink.blinkcard.capacitor.overlays.serialization;
 import android.content.Context;
 
 import com.microblink.blinkcard.entities.recognizers.RecognizerBundle;
-import com.microblink.blinkcard.fragment.overlay.blinkcard.scanlineui.ScanLineOverlayStrings;
+import com.microblink.blinkcard.fragment.overlay.blinkcard.reticleui.BlinkCardReticleOverlayStrings;
 import com.microblink.blinkcard.uisettings.BlinkCardUISettings;
 import com.microblink.blinkcard.uisettings.UISettings;
 import com.microblink.blinkcard.capacitor.overlays.OverlaySettingsSerialization;
@@ -23,14 +23,35 @@ public final class BlinkCardOverlaySettingsSerialization implements OverlaySetti
         boolean showFlashlightWarning = jsonUISettings.optBoolean("showFlashlightWarning", true);
         settings.setShowGlareWarning(showFlashlightWarning);
 
-        ScanLineOverlayStrings.Builder overlayStringsBuilder = new ScanLineOverlayStrings.Builder(context);
+        boolean showOnboardingInfo = jsonUISettings.optBoolean("showOnboardingInfo", true);
+        settings.setShowOnboardingInfo(showOnboardingInfo);
+
+        boolean showIntroductionDialog = jsonUISettings.optBoolean("showIntroductionDialog", true);
+        settings.setShowIntroductionDialog(showIntroductionDialog);
+
+        long onboardingButtonTooltipDelay = jsonUISettings.optLong("onboardingButtonTooltipDelay", 8000);
+        settings.setShowTooltipTimeIntervalMs(onboardingButtonTooltipDelay);
+
+        BlinkCardReticleOverlayStrings.Builder overlayStringsBuilder = new BlinkCardReticleOverlayStrings.Builder(context);
         String firstSideInstructions = getStringFromJSONObject(jsonUISettings, "firstSideInstructions");
         if (firstSideInstructions != null) {
-            overlayStringsBuilder.setFrontSideInstructions(firstSideInstructions);
+            overlayStringsBuilder.setFrontSideInstructionsText(firstSideInstructions);
         }
         String flipCardInstructions = getStringFromJSONObject(jsonUISettings, "flipCardInstructions");
         if (flipCardInstructions != null) {
             overlayStringsBuilder.setFlipCardInstructions(flipCardInstructions);
+        }
+        String errorMoveCloser = getStringFromJSONObject(jsonUISettings, "errorMoveCloser");
+        if (errorMoveCloser != null) {
+            overlayStringsBuilder.setErrorMoveCloser(errorMoveCloser);
+        }
+        String errorMoveFarther = getStringFromJSONObject(jsonUISettings, "errorMoveFarther");
+        if (errorMoveFarther != null) {
+            overlayStringsBuilder.setErrorMoveFarther(errorMoveFarther);
+        }
+        String errorCardTooCloseToEdge = getStringFromJSONObject(jsonUISettings, "errorCardTooCloseToEdge");
+        if (errorCardTooCloseToEdge != null) {
+            overlayStringsBuilder.setErrorCardTooCloseToEdge(errorCardTooCloseToEdge);
         }
 
         settings.setStrings(overlayStringsBuilder.build());

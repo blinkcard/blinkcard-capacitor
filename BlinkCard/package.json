@@ -17,12 +17,14 @@
   "author": "Microblink",
   "license": "MIT",
   "devDependencies": {
-    "@capacitor/android": "^3.2.0",
-    "@capacitor/core": "^3.2.0",
-    "@capacitor/ios": "^3.2.0",
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/ios": "^5.0.0",
     "@ionic/prettier-config": "^1.0.0",
     "@ionic/swiftlint-config": "^1.0.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
+    "@types/node": "^17.0.41",
     "prettier": "^2.0.5",
     "prettier-plugin-java": "^1.6.2",
     "rimraf": "^3.0.0",
@@ -31,7 +33,7 @@
     "typescript": "~3.8.3"
   },
   "peerDependencies": {
-    "@capacitor/core": "^3.2.0"
+    "@capacitor/core": "^5.0.0"
   },
   "files": [
     "dist/",

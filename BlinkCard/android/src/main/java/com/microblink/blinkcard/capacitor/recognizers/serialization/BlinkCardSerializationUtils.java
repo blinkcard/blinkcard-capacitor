@@ -5,6 +5,8 @@ import com.microblink.blinkcard.capacitor.SerializationUtils;
 import com.microblink.blinkcard.entities.recognizers.blinkcard.BlinkCardAnonymizationMode;
 import com.microblink.blinkcard.entities.recognizers.blinkcard.BlinkCardAnonymizationSettings;
 import com.microblink.blinkcard.entities.recognizers.blinkcard.CardNumberAnonymizationSettings;
+import com.microblink.blinkcard.entities.recognizers.blinkcard.MatchLevel;
+import com.microblink.blinkcard.entities.recognizers.blinkcard.DocumentLivenessCheckResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +38,27 @@ public abstract class BlinkCardSerializationUtils {
         }
 
         private static BlinkCardAnonymizationMode getAnonymizationMode(JSONObject json, String name) {
-            return BlinkCardAnonymizationMode.values()[json.optInt(name, 1) -1];
+            return BlinkCardAnonymizationMode.values()[json.optInt(name, 1)];
         }
 
+        public static JSONObject serializeDocumentLivenessCheckResult(DocumentLivenessCheckResult documentLivenessCheckResult) throws JSONException {
+            JSONObject jsonDocumentLivenessCheckResult = new JSONObject();
+            if (documentLivenessCheckResult != null) {
+                JSONObject frontDocumentLivenessResult = new JSONObject();
+                frontDocumentLivenessResult.put("handPresenceCheck", documentLivenessCheckResult.getFront().getHandPresenceCheck().ordinal());
+                frontDocumentLivenessResult.put("photocopyCheck", documentLivenessCheckResult.getFront().getPhotocopyCheck().getCheckResult().ordinal());
+                frontDocumentLivenessResult.put("screenCheck", documentLivenessCheckResult.getFront().getScreenCheck().getCheckResult().ordinal());
+                jsonDocumentLivenessCheckResult.put("front", frontDocumentLivenessResult);
+                JSONObject backDocumentLivenessResult = new JSONObject();
+                backDocumentLivenessResult.put("handPresenceCheck", documentLivenessCheckResult.getBack().getHandPresenceCheck().ordinal());
+                backDocumentLivenessResult.put("photocopyCheck", documentLivenessCheckResult.getBack().getPhotocopyCheck().getCheckResult().ordinal());
+                backDocumentLivenessResult.put("screenCheck", documentLivenessCheckResult.getBack().getScreenCheck().getCheckResult().ordinal());
+                jsonDocumentLivenessCheckResult.put("back", backDocumentLivenessResult);
+            }
+            return jsonDocumentLivenessCheckResult;
+        }
+
+        public static MatchLevel deserializeMatchLevel(JSONObject json, String name) {
+            return MatchLevel.values()[json.optInt(name, 5)];
+    }
 }
