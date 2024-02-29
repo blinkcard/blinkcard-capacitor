@@ -11,7 +11,7 @@ Package depends on [BlinkCard SDK](https://microblink.com/products/blinkcard) an
 
 ### Capacitor
 
-BlinkCard plugin is developed with Capacitor version 3.2.0.
+BlinkCard plugin is developed with Capacitor version 5.7.0.
 For help with Capacitor, view official [documentation](https://capacitorjs.com/docs).
 
 ### iOS

@@ -1,6 +1,7 @@
 ## 2.9.0
 
 - Updated to [Android SDK v2.9.0](https://github.com/blinkcard/blinkcard-android/releases/tag/v2.9.0) and [iOS SDK v2.9.0](https://github.com/BlinkCard/blinkcard-ios/releases/tag/v2.9.0)
+- Updated Capacitor version to 5.7.0
 - Improved scanning performance and added support for virtually any card layout
 - Added new result `documentLivenessCheck` that contains liveness information for the first and second sides of the scanned card.
     - `handPresenceCheck` , `photocopyCheck` and `screenCheck` liveness information can be obtained.
