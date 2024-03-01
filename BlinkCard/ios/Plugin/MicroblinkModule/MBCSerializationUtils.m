@@ -22,8 +22,12 @@
     return [MBCSerializationUtils serializeDay:components.day month:components.month year:components.year];
 }
 
-+(NSDictionary *) serializeMBDateResult:(MBCDateResult *) value {
-    return [MBCSerializationUtils serializeDay:value.day month:value.month year:value.year];
++ (NSDictionary *)serializeMBCDate:(MBCDate *) value {
+    NSMutableDictionary *dict = [MBCSerializationUtils serializeDay:value.day month:value.month year:value.year].mutableCopy;
+    [dict setValue: value.originalDateString forKey:@"originalDateString"];
+    [dict setValue:[NSNumber numberWithBool:value.isFilledByDomainKnowledge] forKey:@"isFilledByDomainKnowledge"];
+
+    return dict;
 }
 
 +(NSString *) encodeMBImage:(MBCImage * _Nullable) image {
@@ -51,6 +55,19 @@
         @"lowerLeft" : [MBCSerializationUtils serializeCGPoint:quad.lowerLeft],
         @"lowerRight" : [MBCSerializationUtils serializeCGPoint:quad.lowerRight]
     };
+}
+
++(NSDictionary *)serializeCGRect:(CGRect) rect {
+    NSDictionary *rectDictionaty = [NSDictionary new];
+    if (!CGRectIsNull(rect)) {
+      rectDictionaty =  @{
+            @"x" : [NSNumber numberWithFloat:rect.origin.x],
+            @"y" : [NSNumber numberWithFloat:rect.origin.y],
+            @"height": [NSNumber numberWithFloat:rect.size.height],
+            @"width": [NSNumber numberWithFloat:rect.size.width],
+        };
+    }
+    return rectDictionaty;
 }
 
 @end

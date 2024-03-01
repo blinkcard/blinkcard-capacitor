@@ -7,9 +7,10 @@ import com.microblink.blinkcard.entities.recognizers.Recognizer;
 //import com.microblink.blinkcard.entities.parsers.Parser;
 import com.microblink.blinkcard.geometry.Point;
 import com.microblink.blinkcard.geometry.Quadrilateral;
+import com.microblink.blinkcard.geometry.Rectangle;
 import com.microblink.blinkcard.image.Image;
 import com.microblink.blinkcard.results.date.Date;
-import com.microblink.blinkcard.results.date.DateResult;
+import com.microblink.blinkcard.results.date.SimpleDate;
 import com.microblink.blinkcard.entities.Entity;
 import com.microblink.blinkcard.entities.recognizers.blinkid.imageoptions.extension.ImageExtensionFactors;
 
@@ -33,7 +34,7 @@ public abstract class SerializationUtils {
         jsonObject.put("resultState", serializeEnum(result.getResultState()));
     }*/
 
-    public static JSONObject serializeDate( @Nullable  Date date ) throws JSONException {
+    public static JSONObject serializeSimpleDate( @Nullable  SimpleDate date ) throws JSONException {
         if (date != null ) {
             JSONObject jsonDate = new JSONObject();
             jsonDate.put("day", date.getDay());
@@ -45,11 +46,11 @@ public abstract class SerializationUtils {
         }
     }
 
-    public static JSONObject serializeDate(@Nullable DateResult dateResult) throws JSONException {
+    public static JSONObject serializeDate(@Nullable Date dateResult) throws JSONException {
         if (dateResult == null) {
             return null;
         } else {
-            return serializeDate(dateResult.getDate());
+            return serializeSimpleDate(dateResult.getDate());
         }
     }
 
@@ -106,6 +107,17 @@ public abstract class SerializationUtils {
         jsonQuad.put("lowerLeft", serializePoint(quad.getLowerLeft()));
         jsonQuad.put("lowerRight", serializePoint(quad.getLowerRight()));
         return jsonQuad;
+    }
+
+    public static JSONObject serializeRectangle(Rectangle rectangle) throws JSONException {
+        JSONObject jsonRectangle = new JSONObject();
+        if (rectangle != null) {
+            jsonRectangle.put("x", rectangle.getX());
+            jsonRectangle.put("y", rectangle.getY());
+            jsonRectangle.put("height", rectangle.getHeight());
+            jsonRectangle.put("width", rectangle.getWidth());
+        }
+        return jsonRectangle;
     }
 
     public static String getStringFromJSONObject(JSONObject map, String key) {

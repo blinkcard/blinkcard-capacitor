@@ -42,7 +42,9 @@ public class BlinkCardCapacitorPlugin: CAPPlugin {
         }
 
         setLicenseKey(license: jsonLicense)
-
+        setLanguage(jsonOverlaySettings?["language"] ?? "en",
+                    jsonOverlaySettings?["country"] ?? "")
+        
         recognizerCollection = MBCRecognizerSerializers.sharedInstance()?.deserializeRecognizerCollection(jsonRecognizerCollection)
 
         DispatchQueue.main.async {
@@ -81,6 +83,21 @@ public class BlinkCardCapacitorPlugin: CAPPlugin {
         MBCMicroblinkSDK.shared().setLicenseKey(iOSLicense) { (licenseError) in
         }
     }
+    
+    private func setLanguage(_ language: Any, _ country: Any) {
+        if let language = language as? String {
+            if let country = country as? String{
+                if !(country.isEmpty) {
+                    MBCMicroblinkApp.shared().language = "\(language)-\(country)"
+                } else {
+                    MBCMicroblinkApp.shared().language = language
+                }
+            } else {
+                MBCMicroblinkApp.shared().language = language
+            }
+        }
+    }
+
 
     private func sanitizeDictionary(_ dictionary: [String : Any]) -> [String : Any]? {
         var mutableDictionary = dictionary
