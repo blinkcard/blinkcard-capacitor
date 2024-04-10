@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '13.0'
   s.dependency 'Capacitor'
   s.swift_version = '5.5'
-  s.dependency 'MBBlinkCard', '~> 2.9.0'
+  s.dependency 'MBBlinkCard', '~> 2.9.1'
 end

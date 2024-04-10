@@ -45,7 +45,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':capacitor-android')
 
-    implementation('com.microblink:blinkcard:2.9.0@aar') {
+    implementation('com.microblink:blinkcard:2.9.3@aar') {
         transitive = true
     }
 }
