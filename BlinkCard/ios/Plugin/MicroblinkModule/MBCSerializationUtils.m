@@ -9,25 +9,14 @@
 
 @implementation MBCSerializationUtils
 
-+(NSDictionary *) serializeDay:(NSInteger)day month:(NSInteger)month year:(NSInteger)year {
++ (NSDictionary *)serializeMBCDate:(MBCDate *) date {
     return @{
-      @"day" : [NSNumber numberWithInteger:day],
-      @"month" : [NSNumber numberWithInteger:month],
-      @"year" : [NSNumber numberWithInteger:year]
+        @"day" : @(date.day),
+        @"month" : @(date.month),
+        @"year" : @(date.year),
+        @"originalDateString" : date.originalDateString,
+        @"isFilledByDomainKnowledge" : [NSNumber numberWithBool:date.isFilledByDomainKnowledge],
     };
-}
-
-+(NSDictionary *) serializeNSDate:(NSDate*) value {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:value];
-    return [MBCSerializationUtils serializeDay:components.day month:components.month year:components.year];
-}
-
-+ (NSDictionary *)serializeMBCDate:(MBCDate *) value {
-    NSMutableDictionary *dict = [MBCSerializationUtils serializeDay:value.day month:value.month year:value.year].mutableCopy;
-    [dict setValue: value.originalDateString forKey:@"originalDateString"];
-    [dict setValue:[NSNumber numberWithBool:value.isFilledByDomainKnowledge] forKey:@"isFilledByDomainKnowledge"];
-
-    return dict;
 }
 
 +(NSString *) encodeMBImage:(MBCImage * _Nullable) image {
