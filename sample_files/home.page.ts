@@ -50,7 +50,7 @@ export class HomePage {
   }
 
   /* BlinkCard scanning with DirectAPI that requires both card images.
-  Best used for getting the information from both front and backside information from various cards */
+  Best used for getting the information from both sides from various cards */
   async directApiTwoSidesScan() {
 
     const plugin = new BlinkCard.BlinkCardPlugin();

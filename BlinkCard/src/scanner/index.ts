@@ -52,7 +52,7 @@ export class BlinkCardPlugin implements BlinkCardPluginInterface {
         delete recognizer.createResultFromNative;
     }
 
-    const response = await BlinkCardCapacitorPlugin.scanWithDirectApi({'recognizerCollection': recognizerCollection, 'frontImage': frontImage, 'backImage': backImage, 'license': license});
+    const response = await BlinkCardCapacitorPlugin.scanWithDirectApi({'license': license, 'recognizerCollection': recognizerCollection, 'frontImage': frontImage, 'backImage': backImage});
     const results = response.resultList;
     const isCancelled = response.cancelled;
     let resultsFromNative = [];
