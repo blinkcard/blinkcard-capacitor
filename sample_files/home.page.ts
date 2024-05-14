@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import * as BlinkCard from '@microblink/blinkcard-capacitor';
-
+import { CameraResultType, Camera } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,8 @@ export class HomePage {
   DocumentSecondSide?: string;
 
   constructor() {}
-
+  
+  /* BlinkCard scanning with camera */
   async scan() {
 
     const plugin = new BlinkCard.BlinkCardPlugin();
@@ -24,8 +25,8 @@ export class HomePage {
 
     // com.microblink.sample
     const licenseKeys: BlinkCard.License = {
-      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTURnMk9EWTNOalE0TURZc0lrTnlaV0YwWldSR2IzSWlPaUkwT1RabFpEQXpaUzAwT0RBeExUUXpZV1F0WVRrMU5DMDBNemMyWlRObU9UTTVNR1FpZlE9Pc2TFqY01wri2M94Fe5sCUOx4F7K3M5TXqNAAJZWrZrJijNfC57WBNQMo7GkQo9Fp6zemUCuWlW0XGzB0RqVzCG1Y8aztpnim/cOYMPi5xoqZm3O3DeSkjmH6qUIyg==',
-      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTURnMk9EWTNPRGcwT1Rrc0lrTnlaV0YwWldSR2IzSWlPaUkwT1RabFpEQXpaUzAwT0RBeExUUXpZV1F0WVRrMU5DMDBNemMyWlRObU9UTTVNR1FpZlE9PUwdDoL/tBLmwfbOm3/dmw5DjLaYtTz1AGwI1162GlPEct+8fJxPBysGwVZ/8KX0Ygxi7NeroVHPM6IDNhCkmUMDHqELYqH3nK8xm8FPaTjCcN53o3B40SKVLm1Quw==',
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRJMU5qTTFNamMyT1RJc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT1biknodonmIfXGRoRgDcJJ6XiWcxCFSE8flLOXwEKYwSUjWVAHSwI7GtA+oqJke90M+2giHY4Qqpeh67vsyoYHEyqCI8E6G47yBZxcIN/A7CFQq4IvMF4U7xaE1S4=',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRVMk56VXlNRGs1TURBc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PaUxma82THp6N9XYMdWpqez318I6MV7Wnzk4WxNIv66o0TlUCNfrHmY3BS8UH7YnVV27AMw+LY1tYtZKkOrrRHKGDYLYg6noKpub5Pab7CntTLdsZ0KD/EGvkZS8j6w=',
       showTrialLicenseWarning: true
     };
 
@@ -46,6 +47,114 @@ export class HomePage {
         this.DocumentSecondSide = result.secondSideFullDocumentImage ? `data:image/jpg;base64,${result.secondSideFullDocumentImage}` : undefined;
       } 
     }
+  }
+
+  /* BlinkCard scanning with DirectAPI that requires both card images.
+  Best used for getting the information from both sides from various cards */
+  async directApiTwoSidesScan() {
+
+    const plugin = new BlinkCard.BlinkCardPlugin();
+
+   // Select the first image where the card number is located and return the Base64 string
+    const firstImage = await this.pickImage();
+
+   // Select the image of the second side of the card and return the Base64 string
+   const secondImage = await this.pickImage();
+
+   const blinkCardRecognizer = new BlinkCard.BlinkCardRecognizer();
+   blinkCardRecognizer.returnFullDocumentImage = true;
+
+    // com.microblink.sample
+    const licenseKeys: BlinkCard.License = {
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRJMU5qTTFNamMyT1RJc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT1biknodonmIfXGRoRgDcJJ6XiWcxCFSE8flLOXwEKYwSUjWVAHSwI7GtA+oqJke90M+2giHY4Qqpeh67vsyoYHEyqCI8E6G47yBZxcIN/A7CFQq4IvMF4U7xaE1S4=',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRVMk56VXlNRGs1TURBc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PaUxma82THp6N9XYMdWpqez318I6MV7Wnzk4WxNIv66o0TlUCNfrHmY3BS8UH7YnVV27AMw+LY1tYtZKkOrrRHKGDYLYg6noKpub5Pab7CntTLdsZ0KD/EGvkZS8j6w=',
+      showTrialLicenseWarning: true
+    };
+
+    try {
+
+      const scanningResults = await plugin.scanWithDirectApi(
+        licenseKeys,
+        new BlinkCard.RecognizerCollection([blinkCardRecognizer]),
+        firstImage,
+        secondImage
+      );
+  
+      if (scanningResults.length === 0) {
+        return;
+      }
+  
+      for (const result of scanningResults) {
+        if (result instanceof BlinkCard.BlinkCardRecognizerResult) {
+          this.Results = getCardResultsString(result);
+          this.DocumentFirstSide = result.firstSideFullDocumentImage ? `data:image/jpg;base64,${result.firstSideFullDocumentImage}` : undefined;
+          this.DocumentSecondSide = result.secondSideFullDocumentImage ? `data:image/jpg;base64,${result.secondSideFullDocumentImage}` : undefined;
+        } 
+      }
+    } catch (scanningError: any) {
+      this.Results = scanningError.message || 'An unknown error occurred';
+      this.DocumentFirstSide = "";
+      this.DocumentSecondSide = "";
+    }
+  }
+
+  /* BlinkCard scanning with DirectAPI that requires one card image.
+  Best used for cards that have all of the information on one side, or if the needed information is on one side */
+  async directApiOneSideScan() {
+
+    const plugin = new BlinkCard.BlinkCardPlugin();
+
+    // Select the image where the card number is located and return the Base64 string
+    const image = await this.pickImage();
+
+    const blinkCardRecognizer = new BlinkCard.BlinkCardRecognizer();
+    blinkCardRecognizer.returnFullDocumentImage = true;
+    blinkCardRecognizer.returnFullDocumentImage = true;
+    blinkCardRecognizer.extractCvv = false;
+    blinkCardRecognizer.extractIban = false;
+    blinkCardRecognizer.extractExpiryDate = false;
+
+    // com.microblink.sample
+    const licenseKeys: BlinkCard.License = {
+      ios: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUBbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRJMU5qTTFNamMyT1RJc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PT1biknodonmIfXGRoRgDcJJ6XiWcxCFSE8flLOXwEKYwSUjWVAHSwI7GtA+oqJke90M+2giHY4Qqpeh67vsyoYHEyqCI8E6G47yBZxcIN/A7CFQq4IvMF4U7xaE1S4=',
+      android: 'sRwCABVjb20ubWljcm9ibGluay5zYW1wbGUAbGV5SkRjbVZoZEdWa1QyNGlPakUzTVRVMk56VXlNRGs1TURBc0lrTnlaV0YwWldSR2IzSWlPaUprWkdRd05qWmxaaTAxT0RJekxUUXdNRGd0T1RRNE1DMDFORFU0WWpBeFlUVTJZamdpZlE9PaUxma82THp6N9XYMdWpqez318I6MV7Wnzk4WxNIv66o0TlUCNfrHmY3BS8UH7YnVV27AMw+LY1tYtZKkOrrRHKGDYLYg6noKpub5Pab7CntTLdsZ0KD/EGvkZS8j6w=',
+      showTrialLicenseWarning: true
+    };
+
+    try {
+
+      const scanningResults = await plugin.scanWithDirectApi(
+        licenseKeys,
+        new BlinkCard.RecognizerCollection([blinkCardRecognizer]),
+        image
+      );
+  
+      if (scanningResults.length === 0) {
+        return;
+      }
+  
+      for (const result of scanningResults) {
+        if (result instanceof BlinkCard.BlinkCardRecognizerResult) {
+          this.Results = getCardResultsString(result);
+          this.DocumentFirstSide = result.firstSideFullDocumentImage ? `data:image/jpg;base64,${result.firstSideFullDocumentImage}` : undefined;
+          this.DocumentSecondSide = "";
+        } 
+      }
+    } catch (scanningError: any) {
+      this.Results = scanningError.message || 'An unknown error occurred';
+      this.DocumentFirstSide = "";
+      this.DocumentSecondSide = "";
+    }
+  }
+
+  // A helper method to obtain the base64 image for DirectAPI processing
+  async pickImage(): Promise<string> {
+    const image = await Camera.getPhoto({
+        quality: 100,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+    });
+    return image.base64String ?? '';
   }
 }
 

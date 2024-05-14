@@ -10,8 +10,7 @@
 
 @interface MBCSerializationUtils : NSObject
 
-+(NSDictionary * _Nonnull) serializeNSDate:(NSDate * _Nullable) value;
-+(NSDictionary * _Nonnull) serializeMBCDate:(MBCDate * _Nullable) value;
++(NSDictionary * _Nonnull) serializeMBCDate:(MBCDate * _Nonnull) date;
 +(NSString * _Nullable) encodeMBImage:(MBCImage * _Nullable) image;
 +(NSDictionary * _Nonnull)serializeCGPoint:(CGPoint) point;
 +(NSDictionary * _Nonnull) serializeMBQuadrangle:(MBCQuadrangle * _Nonnull) quad;
