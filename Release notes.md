@@ -1,3 +1,19 @@
+## 2.10.0
+
+- Updated to [Android SDK v2.10.0](https://github.com/blinkcard/blinkcard-android/releases/tag/v2.10.0) and [iOS SDK v2.10.0](https://github.com/BlinkCard/blinkcard-ios/releases/tag/v2.10.0)
+- Updated the SDK to Capacitor V6 
+
+**Improvements**
+
+- Significant improvements in photocopy detection.
+    - Both the False Rejection Rate and False Acceptance Rate are reduced by ~50% as measured on the default match level.
+
+**Bug fixes**
+
+- Android specific:
+    - Removed libc++_shared.so from the SDK
+    - Fix for duplicate attrs resource: attr/mb_onboardingImageColor when combining multiple Microblink's SDKs in the same app
+
 ## 2.9.1
 
 - Updated to [Android SDK v2.9.3](https://github.com/blinkcard/blinkcard-android/releases/tag/v2.9.3) and [iOS SDK v2.9.1](https://github.com/BlinkCard/blinkcard-ios/releases/tag/v2.9.1)
